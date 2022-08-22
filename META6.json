@@ -1,7 +1,7 @@
 {
   "name": "annotations",
   "description": "Thread-safe static state",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "perl": "6.e.PREVIEW",
   "authors": [ "Ben Davies" ],
   "auth": "zef:Kaiepi",
