@@ -2,7 +2,7 @@
   "name": "annotations",
   "description": "Thread-safe static state",
   "version": "0.0.1",
-  "perl": "6.e",
+  "perl": "6.e.PREVIEW",
   "authors": [ "Ben Davies" ],
   "auth": "zef:Kaiepi",
   "depends": [ ],

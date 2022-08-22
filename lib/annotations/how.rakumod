@@ -1,4 +1,4 @@
-use v6.e.PREVIEW
+use v6.e.PREVIEW;
 use annotations::containers;
 
 my role MetamodelX::AnnotationHOW[Positional ::C, ::H] is H {
