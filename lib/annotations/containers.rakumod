@@ -57,8 +57,8 @@ my class Buffer does Positional {
         gather do {
             my $binder := Binder.new;
             ENTER { $!allocs.lock }
+            CATCH { $!allocs.unlock; next }
             KEEP  { $!allocs.unlock; take-rw $binder }
-            CATCH { default { $!allocs.unlock; $_.resume } }
             my $offset = ⚛$!cursor;
             @!buffer.BIND-POS: $offset, $binder;
             $!cursor ⚛= $offset + 1;
@@ -71,8 +71,8 @@ my class Buffer does Positional {
             my $binder := Binder.new;
             $binder.VAR.BIND: $bindee;
             ENTER { $!allocs.lock }
+            CATCH { $!allocs.unlock; next }
             KEEP  { $!allocs.unlock; take-rw $binder }
-            CATCH { default { $!allocs.unlock; $_.resume } }
             my $offset = ⚛$!cursor;
             @!buffer.BIND-POS: $offset, $binder;
             $!cursor ⚛= $offset + 1;
@@ -86,9 +86,8 @@ my class Buffer does Positional {
         gather for @bridge -> Mu $bridge is raw {
             my $binder := Binder.new;
             ENTER { $!allocs.lock }
+            CATCH { $!allocs.unlock; next }
             KEEP  { $!allocs.unlock; take $binder }
-            CATCH { default { $!allocs.unlock; $_.resume } }
-            $!allocs.lock;
             my $offset = ⚛$!cursor;
             @!buffer.BIND-POS: $offset, $binder = $bridge = $offset;
             $!cursor ⚛= $offset + 1;
