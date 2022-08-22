@@ -1,0 +1,20 @@
+{
+  "name": "annotations",
+  "description": "Thread-safe static state",
+  "version": "0.0.1",
+  "perl": "6.e",
+  "authors": [ "Ben Davies" ],
+  "auth": "zef:Kaiepi",
+  "depends": [ ],
+  "build-depends": [],
+  "test-depends": [],
+  "provides": {
+    "annotations": "lib/annotations.rakumod",
+	"annotations::containers": "lib/annotations/containers.rakumod",
+	"annotations::core": "lib/annotations/core.rakumod",
+	"annotations::how": "lib/annotations/how.rakumod"
+  },
+  "resources": [],
+  "license": "Artistic-2.0",
+  "source-url": "https://github.com/Kaiepi/ra-annotations.git"
+}

@@ -1,0 +1,62 @@
+use v6.e.PREVIEW;
+use Test;
+use annotations::containers;
+
+plan 3;
+
+subtest "Binder", {
+    plan 3;
+
+    my $binder := Binder.new;
+    is ($binder = <0>), <0>,
+       "can FETCH a STORE given an initial binding";
+    is ($binder = <1>), <0>,
+       "can FETCH a STORE given a value on a value";
+    is (Binder.new = <3>), ($ = <3>),
+       "can FETCH a STORE given an item on an item";
+};
+
+subtest "Buffer", {
+    plan 13;
+
+    my @buffer := Buffer.new;
+    my $allocs := my $dynpos := 10;
+    is @(@buffer = $ = 1), (1,),
+       "can STORE item without it vanishing 👻";
+    is @(@buffer = 2, 3), (1, 2, 3),
+       "can STORE iterable";
+    is @(@buffer.STORE: 4, 5, 6, :THROUGH), @(4..6),
+       "can STORE iterable THROUGH";
+    is (do $_ for @buffer.STORE: 7..9, :SEGMENT), @(7..9),
+       "can STORE iterable SEGMENTed";
+    is (@buffer.ALLOC(1).sink // (@buffer[9] := 10)), 10,
+       "can bind to a slot by position";
+    is @buffer.elems, $allocs,
+       "can count allocations";
+    is @buffer[0..$allocs]:exists, @(|(True xx $allocs), False),
+       "can query allocations";
+    is @(@buffer[^$allocs].sort), @(1..$allocs),
+       "can read allocations";
+    is @@buffer, @(1..$allocs),
+       "can coerce to a List";
+    is @buffer.Seq, (1...$allocs),
+       "can coerce to a Seq";
+    ok (@buffer[0] = 0) == @buffer[0] == 0,
+       "can assign to a slot by position if mutable";
+    ok not((@buffer[9] = 0) == @buffer[9] == 0),
+       "cannot assign to a slot by position if readonly";
+    ok (eager race @buffer.STORE: $dynpos..($allocs := 49_999), :SEGMENT) eqv @($dynpos..$allocs),
+       "a racey SEGMENT STORE maintains its order somewhat";
+};
+
+subtest "Keeper", {
+    plan 3;
+
+    my @keeper := Keeper.new;
+    is (my @idents := @keeper.STORE: <a b c>, :THROUGH), <a b c>,
+       "can STORE some keys to symbols";
+    is (@keeper[@idents] = <1 2 3>), <1 2 3>,
+       "can assign to slots allocated for symbols";
+    is %@keeper, Map.new(<a>, <1>, <b>, <2>, <c>, <3>),
+       "can coerce to a Map";
+};
