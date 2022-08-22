@@ -16,5 +16,6 @@
   },
   "resources": [],
   "license": "Artistic-2.0",
-  "source-url": "https://github.com/Kaiepi/ra-annotations.git"
+  "source-url": "https://github.com/Kaiepi/ra-annotations.git",
+  "tags": [ "data", "type" ]
 }
