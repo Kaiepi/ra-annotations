@@ -23,19 +23,23 @@ module Upper {
         # The annotated operator makes some allocations in an annotation's ANN
         # buffer eagerly given some Str-coercive objects. These become IntStr:D
         # symbols, which is to say they're a name and a position in the buffer
-        # for this mixin. Because we take care of this immediately, this can act
-        # as our compile-time check for whether or not we really are composing
-        # an annotation. Such allocating in ANN is thread-safe.
+        # for this mixin. Because we take care of this immediately, this can
+        # act as our compile-time check for whether or not we really are
+        # composing an annotation. Such allocating in ANN is thread-safe.
         my @SYMBOLS := $?CLASS annotate @LOOKUP;
 
         # The bare slots can be fetched by ANN's list method given these
         # symbols. Because these carry containers regardless of whether or not
         # a value is being stored, this can always be assigned to dynamically.
-        method alphabet(::?CLASS: --> List:D) is raw { ANN[$?CLASS].list: :of(@SYMBOLS) }
+        method alphabet(::?CLASS: --> List:D) is raw {
+            ANN[$?CLASS].list: :of(@SYMBOLS)
+        }
 
         # Likewise, these symbols can form the keys of a map by the ANN's hash
         # method.
-        method dictionary(::?CLASS: --> Map:D) { ANN[$?CLASS].hash: :of(@SYMBOLS) }
+        method dictionary(::?CLASS: --> Map:D) {
+            ANN[$?CLASS].hash: :of(@SYMBOLS)
+        }
 
         # This will find a letter given the key of a booked symbol.
         method translate(::?CLASS: Str:D --> Str) { ... }
@@ -44,13 +48,17 @@ module Upper {
     annotation Half does Alphabet[LATIN] is repr<Uninstantiable> {
         CHECK $?CLASS.alphabet = 'A'..'Z';
         my %DICTIONARY := $?CLASS.dictionary;
-        method translate(::?CLASS: Str:D $letter --> Str) { %DICTIONARY.AT-KEY: $letter }
+        method translate(::?CLASS: Str:D $letter --> Str) {
+            %DICTIONARY.AT-KEY: $letter
+        }
     }
 
     annotation Full does Alphabet[LATIN] is repr<Uninstantiable> {
         CHECK $?CLASS.alphabet = 'Ａ'..'Ｚ';
         my %DICTIONARY := $?CLASS.dictionary;
-        method translate(::?CLASS: Str:D $letter --> Str) { %DICTIONARY.AT-KEY: $letter }
+        method translate(::?CLASS: Str:D $letter --> Str) {
+            %DICTIONARY.AT-KEY: $letter
+        }
     }
 }
 
@@ -79,7 +87,9 @@ module LowerPsychUpper {
 
         method dictionary(::?CLASS: --> Map:D) { %DICTIONARY }
 
-        method translate(::?CLASS: Str:D $letter --> Str) { %DICTIONARY.AT-KEY: $letter }
+        method translate(::?CLASS: Str:D $letter --> Str) {
+            %DICTIONARY.AT-KEY: $letter
+        }
     }
 }
 
