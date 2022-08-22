@@ -31,7 +31,7 @@ module Upper {
         # The bare slots can be fetched by ANN's list method given these
         # symbols. Because these carry containers regardless of whether or not
         # a value is being stored, this can always be assigned to dynamically.
-        method alphabet(::?CLASS: --> List:D) is raw {
+        method alphabet(::?CLASS: --> List:D) {
             ANN[$?CLASS].list: :of(@SYMBOLS)
         }
 
