@@ -1,6 +1,6 @@
 use v6.e.PREVIEW;
 
-module annotations:ver<0.0.1>:auth<zef:Kaiepi>:api<0> {
+module annotations:ver<0.0.2>:auth<zef:Kaiepi>:api<0> {
     use annotations::containers;
     use annotations::how;
     use annotations::core;
