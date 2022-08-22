@@ -3,7 +3,7 @@
 NAME
 ====
 
-annotations - Thread-safe static state
+annotations - Thread-safe static buffer
 
 SYNOPSIS
 ========
@@ -28,7 +28,7 @@ module Upper {
         # an annotation. Such allocating in ANN is thread-safe.
         my @SYMBOLS := $?CLASS annotate @LOOKUP;
 
-        # The bare slots can be fetched by ANN's list method given thse
+        # The bare slots can be fetched by ANN's list method given these
         # symbols. Because these carry containers regardless of whether or not
         # a value is being stored, this can always be assigned to dynamically.
         method alphabet(::?CLASS: --> List:D) is raw { ANN[$?CLASS].list: :of(@SYMBOLS) }
