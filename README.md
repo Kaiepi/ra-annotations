@@ -112,7 +112,7 @@ DESCRIPTION
 
 `annotations` is a collection of containers in a package trench coat. Through these, a thread-safe, positional buffer may be associated with any kind of type, retrievable with `ANN`, regardless of whether or not it actually can support stashing.
 
-Importing `annotations` can either create an `annotation` declarator with `'declare'` or override another (e.g. `'role'`) with `'supersede'` (though this produces an erroneous deprecation warning as of v2020.07). As demonstrated, the `'direct'` and `'symbolic'` arguments determine the mode of assignment to a package's `ANN`. Finally, a package declarator must be provided in order to retrieve its HOW.
+Importing `annotations` can either create an `annotation` declarator with `<declare>` or override another (e.g. `<role>`) with `<supersede>` (though this produces an erroneous deprecation warning as of v2020.07). As demonstrated, the `<direct>` and `<symbolic>` arguments determine the mode of assignment to a package's `ANN`. Finally, a package declarator must be provided in order to retrieve its HOW.
 
 AUTHOR
 ======

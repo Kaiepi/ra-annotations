@@ -115,9 +115,9 @@ type, retrievable with C<ANN>, regardless of whether or not it actually can
 support stashing.
 
 Importing C<annotations> can either create an C<annotation> declarator with
-C<'declare'> or override another (e.g. C<'role'>) with C<'supersede'> (though
+C«<declare>» or override another (e.g. C«<role>») with C«<supersede>» (though
 this produces an erroneous deprecation warning as of v2020.07). As
-demonstrated, the C<'direct'> and C<'symbolic'> arguments determine the mode of
+demonstrated, the C«<direct>» and C«<symbolic>» arguments determine the mode of
 assignment to a package's C<ANN>. Finally, a package declarator must be
 provided in order to retrieve its HOW.
 
