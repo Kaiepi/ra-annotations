@@ -8,7 +8,7 @@ my class DEALLOC is Nil is repr<Uninstantiable> {
 
     method raku { self.Mu::raku }
 }
-#=[ This should not appear in the context of a Positional or Associative. ]
+#=[ This should not appear in the context of a list or hash. ]
 
 #|[ The null value for a scalar in a list or hash context. ]
 my class REALLOC is Nil is repr<Uninstantiable> {
