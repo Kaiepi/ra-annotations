@@ -61,7 +61,7 @@ my class Buffer does Positional {
     has $!cursor is default(0);
 
     #|[ Allocates a number of slots via lazily reified sequence. ]
-    method ALLOC(::?CLASS:D: Mu $values --> Seq:D) {
+    method ALLOC(::?CLASS:D: $values --> Seq:D) {
         gather do {
             my $binder := Binder.new;
             ENTER { $!allocs.lock }
