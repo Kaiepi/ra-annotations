@@ -110,7 +110,7 @@ put LowerPsychUpper::Full.translate: 'z'; # OUTPUT:
 DESCRIPTION
 ===========
 
-`annotations` is a collection of containers in a package trench coat. Through these, a thread-safe, positional buffer may be associated with any kind of type, retrievable with `ANN`, regardless of whether or not it actually can support stashing.
+`annotations` is a collection of containers in a package trench coat. Through `MetamodelX::AnnotationHOW`, a `Positional` or `Associative` container may be associated with any kind of type, regardless of whether or not it actually can support stashing. These can be retrieved with `ANN`, and appended to via the infix `=`, `annotate`, and `graffiti` operators (see `t/02-direct.t` for an example of `graffiti`).
 
 Importing `annotations` can either create an `annotation` declarator with `<declare>` or override another (e.g. `<role>`) with `<supersede>` (though this produces an erroneous deprecation warning as of v2020.07). As demonstrated, the `<direct>` and `<symbolic>` arguments determine the mode of assignment to a package's `ANN`. Finally, a package declarator must be provided in order to retrieve its HOW.
 

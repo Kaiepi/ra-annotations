@@ -110,9 +110,11 @@ put LowerPsychUpper::Full.translate: 'z'; # OUTPUT:
 =head1 DESCRIPTION
 
 C<annotations> is a collection of containers in a package trench coat. Through
-these, a thread-safe, positional buffer may be associated with any kind of
-type, retrievable with C<ANN>, regardless of whether or not it actually can
-support stashing.
+C<MetamodelX::AnnotationHOW>, a C<Positional> or C<Associative> container may
+be associated with any kind of type, regardless of whether or not it actually
+can support stashing. These can be retrieved with C<ANN>, and appended to via
+the infix C<=>, C<annotate>, and C<graffiti> operators (see C<t/02-direct.t>
+for an example of C<graffiti>).
 
 Importing C<annotations> can either create an C<annotation> declarator with
 C«<declare>» or override another (e.g. C«<role>») with C«<supersede>» (though
