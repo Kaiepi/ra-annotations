@@ -10,3 +10,9 @@ v0.0.3:
 v0.0.4:
     - More typos and other minor fixes to module documentation.
     - Finish documentating annotations::containers and annotations::how types.
+
+v0.0.5:
+    - More minor documentation fixes.
+    - Change Buffer.ALLOC's Mu $values to its default type to allow for
+      autothreading of Junction:D.
+    - Make Buffer.POINT take-rw its elements to preserve their containers.
