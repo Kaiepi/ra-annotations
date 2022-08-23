@@ -47,7 +47,9 @@ module Upper {
 
     annotation Half does Alphabet[LATIN] is repr<Uninstantiable> {
         CHECK $?CLASS.alphabet = 'A'..'Z';
+
         my %DICTIONARY := $?CLASS.dictionary;
+
         method translate(::?CLASS: Str:D $letter --> Str) {
             %DICTIONARY.AT-KEY: $letter
         }
@@ -55,7 +57,9 @@ module Upper {
 
     annotation Full does Alphabet[LATIN] is repr<Uninstantiable> {
         CHECK $?CLASS.alphabet = 'Ａ'..'Ｚ';
+
         my %DICTIONARY := $?CLASS.dictionary;
+
         method translate(::?CLASS: Str:D $letter --> Str) {
             %DICTIONARY.AT-KEY: $letter
         }
@@ -83,12 +87,16 @@ module LowerPsychUpper {
 
         my constant %DICTIONARY = Map.new: LATIN Z=> @ALPHABET;
 
-        method alphabet(::?CLASS: --> List:D) { @ALPHABET }
+        method alphabet(::?CLASS: --> List:D) {
+            @ALPHABET
+        }
 
-        method dictionary(::?CLASS: --> Map:D) { %DICTIONARY }
+        method dictionary(::?CLASS: --> Map:D) {
+            %DICTIONARY
+        }
 
         method translate(::?CLASS: Str:D $letter --> Str) {
-            %DICTIONARY.AT-KEY: $letter
+            %DICTIONARY{$letter}
         }
     }
 }
