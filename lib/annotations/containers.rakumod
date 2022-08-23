@@ -1,5 +1,6 @@
 use v6.e.PREVIEW;
 
+#|[ The null value for a scalar in an item context. ]
 my class DEALLOC is Nil is repr<Uninstantiable> {
     method Str { self.Mu::Str }
 
@@ -7,7 +8,9 @@ my class DEALLOC is Nil is repr<Uninstantiable> {
 
     method raku { self.Mu::raku }
 }
+#=[ This should not appear in the context of a Positional or Associative. ]
 
+#|[ The null value for a scalar in a list or hash context. ]
 my class REALLOC is Nil is repr<Uninstantiable> {
     method Str { self.Mu::Str }
 
@@ -15,7 +18,11 @@ my class REALLOC is Nil is repr<Uninstantiable> {
 
     method raku { self.Mu::raku }
 }
+#=[ This should not appear in the context of an item. ]
 
+#=[ A Proxy carrying an additional BIND operation. This and STORE are a decont
+    apart; the first binding or assignment makes for a binding, while those
+    that follow will assign, but only if an RW container was provided before. ]
 my class Binder is Proxy {
     has $!value is default(DEALLOC);
     has $!guard is default(False);
@@ -36,9 +43,6 @@ my class Binder is Proxy {
 
     my method STORE(Mu $topic is raw --> Nil) {
         use nqp;
-        # If $!value is a RW container, check if $!guard has already been
-        # toggled. The first call to STORE binds; any that follow assign, but
-        # only when possible to do so because of any container provided then.
         nqp::if(
           nqp::isrwcont($!value),
           nqp::cas($!guard, False, True)
@@ -47,6 +51,10 @@ my class Binder is Proxy {
     }
 }
 
+#|[ A Positional thread-safe buffer. Values are appended via a STORE which,
+    given some custom adverbs, returns references to slots allocated instead of
+    the buffer itself. These colours of STORE are what back the infix annotate
+    and graffiti operators under direct annotations. ]
 my class Buffer does Positional {
     has @!buffer is default(REALLOC);
     has $!allocs = Lock.new;
@@ -157,6 +165,10 @@ my class Buffer does Positional {
     }
 }
 
+#|[ A subtype of Buffer. The STORE method returns IntStr:D symbols that act as
+    both a name and a position in the buffer instead of bare references, given
+    to its list and hash methods via :@of. The coloured STORE backs the infix
+    annotate and graffiti operators under symbolic annotations this time. ]
 my class Keeper is Buffer {
     has @!idents is Buffer;
 
