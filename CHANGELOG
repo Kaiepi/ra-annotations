@@ -6,3 +6,7 @@ v0.0.2:
 
 v0.0.3:
     - Fix some typos in the README.
+
+v0.0.4:
+    - More typos and other minor fixes to module documentation.
+    - Finish documentating annotations::containers and annotations::how types.
