@@ -95,7 +95,7 @@ my class Buffer does Positional {
             my $binder := Binder.new;
             ENTER { $!allocs.lock }
             CATCH { $!allocs.unlock; next }
-            KEEP  { $!allocs.unlock; take $binder }
+            KEEP  { $!allocs.unlock; take-rw $binder }
             my $offset = ⚛$!cursor;
             @!buffer.BIND-POS: $offset, $binder = $bridge = $offset;
             $!cursor ⚛= $offset + 1;
