@@ -9,9 +9,13 @@ my role MetamodelX::AnnotationHOW[Positional ::C, ::H] is H {
         @!annotations := C.new;
     }
 
+    method ANN(::?ROLE:D:) is raw {
+        @!annotations
+    }
+
     #|[ Returns a list associated with a metaobject. ]
     method yield_annotations(::?ROLE:D: Mu) is raw {
-        @!annotations
+        self.ANN
     }
 }
 
@@ -23,9 +27,13 @@ my role MetamodelX::AnnotationHOW[Associative ::C, ::H] is H {
         %!annotations := C.new;
     }
 
+    method ANN(::?ROLE:D:) is raw {
+        %!annotations
+    }
+
     #|[ Returns a hash associated with a metaobject. ]
     method yield_annotations(::?ROLE:D: Mu) is raw {
-        %!annotations
+        self.ANN
     }
 }
 
