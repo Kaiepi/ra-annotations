@@ -1,10 +1,11 @@
 {
   "name": "annotations",
   "description": "Thread-safe static buffer",
-  "version": "0.0.5",
+  "version": "0.1.0",
+  "auth": "zef:Kaiepi",
+  "api": "1",
   "perl": "6.e.PREVIEW",
   "authors": [ "Ben Davies" ],
-  "auth": "zef:Kaiepi",
   "depends": [],
   "build-depends": [],
   "test-depends": [],

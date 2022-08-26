@@ -16,3 +16,10 @@ v0.0.5:
     - Change Buffer.ALLOC's Mu $values to its default type to allow for
       autothreading of Junction:D.
     - Make Buffer.POINT take-rw its elements to preserve their containers.
+
+v0.1.0:
+    - Introduces MetamodelX::AnnotationHOW.ANN, a bare HOW getter for its
+      annotations.
+    - MetamodelX::AnnotationHOW.yield_annotations is now backed by said HOW
+      getter by default.
+    - Bumps the API to 1.
